@@ -4,16 +4,28 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<math.h>
+#include"lib/libft.h"
 
-typedef struct s_data
+#define HEIGHT 600
+#define WIDTH 800
+
+typedef struct s_fractal
 {
+    void *mlx;
+    void *win;
     void *img;
     char *addr;
     int bpp;
     int line_length;
     int endian;
+    double zoom;
+    double move_x;
+    double move_y;
+}       t_fractal;
 
-}       t_data;
-
-
+typedef struct s_complex
+{
+    double r;
+    double i;
+} t_complex;
 #endif

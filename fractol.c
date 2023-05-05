@@ -1,8 +1,8 @@
 #include<mlx.h>
 #include<math.h>
+#include"fractol.h"
 
-#define HEIGHT 600
-#define WIDTH 800
+
 // void ft_ellipse(int x ,int y,int r,int size_l,int bpp,void *data)
 // {
 //     int i = 0;
@@ -118,22 +118,16 @@
 //     mlx_put_image_to_window(mlx_ptr,win_ptr,img_ptr,0,0);
 //     mlx_loop(mlx_ptr);
 // }
-#include "mlx.h"
+// #include "mlx.h"
 
-#define WIDTH 800
-#define HEIGHT 600
-
-typedef struct s_complex
-{
-    double r;
-    double i;
-} t_complex;
+// #define WIDTH 800
+// #define HEIGHT 600
 
 int mandelbrot_iterations(t_complex c)
 {
     t_complex z = {0, 0};
     int i;
-    for (i = 0; i < 100 && z.r * z.r + z.i * z.i < 4; i++)
+    for (i = 0; i < 150 && z.r * z.r + z.i * z.i <  4; i++)
     {
         t_complex tmp = {z.r * z.r - z.i * z.i + c.r, 2 * z.r * z.i + c.i};
         z = tmp;
@@ -154,10 +148,10 @@ void draw_mandelbrot_set(void *mlx_ptr, void *win_ptr)
             t_complex c = {1.5 * (x - WIDTH / 2) / (0.5 * zoom * WIDTH) + move_x,
                            (y - HEIGHT / 2) / (0.5 * zoom * HEIGHT) + move_y};
             int i = mandelbrot_iterations(c);
-            if (i == 100)
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0x000000);
+            if (i == 150)
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, 0x0000000);
             else
-                mlx_pixel_put(mlx_ptr, win_ptr, x, y, i * 0x001111);
+                mlx_pixel_put(mlx_ptr, win_ptr, x, y, i * 0x800080);
         }
     }
 }
@@ -172,3 +166,17 @@ int main()
     mlx_loop(mlx_ptr);
     return 0;
 }
+
+// void    check_args(char *av)
+// {
+//     if (ft_strncmp(av,"Mandelbort",11))
+//         get_mandel();
+//     else 
+//         exit(0);
+// }
+// int main (int ac ,char **av)
+// {
+//     if (ac > 2)
+//         write (1,"bad arguments number",21);
+//     check_args(*av);
+// }
