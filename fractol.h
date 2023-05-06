@@ -8,6 +8,15 @@
 
 #define HEIGHT 600
 #define WIDTH 800
+#define MANDELBROT 1
+#define JULIA 2
+#define MAX_ITER 250
+
+typedef struct s_complex
+{
+    double r;
+    double i;
+} t_complex;
 
 typedef struct s_fractal
 {
@@ -19,14 +28,10 @@ typedef struct s_fractal
     int line_length;
     int endian;
     double zoom;
+    t_complex c;
     double move_x;
     double move_y;
     int    type;
 }       t_fractal;
 
-typedef struct s_complex
-{
-    double r;
-    double i;
-} t_complex;
 #endif
