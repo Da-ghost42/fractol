@@ -21,6 +21,7 @@ typedef struct s_fractal
     double zoom;
     double move_x;
     double move_y;
+    int    type;
 }       t_fractal;
 
 typedef struct s_complex
