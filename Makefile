@@ -13,17 +13,17 @@ RM = rm -rf
 all : ${NAME}
 
 ${NAME} : ${OBJ}
-	make -C lib
-	${CC} ${OBJ} ${LIB} -lmlx -lmlx -framework  OpenGL -framework AppKit -o ${NAME}
+	@make -C lib
+	@${CC} ${OBJ} ${LIB} -lmlx -lmlx -framework  OpenGL -framework AppKit -o ${NAME}
 
 %.o: %.c HEADER
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	@$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 clean :
-	${RM} ${OBJ} ${NAME}
+	@${RM} ${OBJ} ${NAME}
 fclean : clean
-	make fclean -C lib
-	${RM} ${NAME}
+	@make fclean -C lib
+	@${RM} ${NAME}
 re : fclean all
 
 .PHONY : all re clean fclean

@@ -4,13 +4,15 @@
 #include<stdio.h>
 #include<unistd.h>
 #include<math.h>
+#include<complex.h>
 #include"lib/libft.h"
 
 #define HEIGHT 600
 #define WIDTH 800
 #define MANDELBROT 1
+#define KEY_ESC 53
 #define JULIA 2
-#define MAX_ITER 250
+#define MAX_ITER 1800
 
 typedef struct s_complex
 {
@@ -31,6 +33,8 @@ typedef struct s_fractal
     t_complex c;
     double move_x;
     double move_y;
+    double r_julia;
+    double i_julia;
     int    type;
 }       t_fractal;
 
