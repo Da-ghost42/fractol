@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/12 18:00:15 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:33:16 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ typedef struct s_complex
     double r;
     double i;
 } t_complex;
+
+typedef struct c_sample
+{
+    unsigned char r;
+    unsigned char g;
+    unsigned char b;
+} t_sample;
 
 typedef struct s_fractal
 {

@@ -1,6 +1,6 @@
 NAME = fractol
 
-SRC = fractol.c
+SRC = fractol.c fractol_tools.c
 
 LIB = lib/libft.a
 

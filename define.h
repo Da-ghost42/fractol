@@ -7,5 +7,6 @@
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
+#define SAMPLE 4
 
 #endif
