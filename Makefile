@@ -6,10 +6,11 @@ LIB = lib/libft.a
 
 HEADER = fractol.h
 
-OBJ = fractol.o
+OBJ = fractol.o fractol_tools.o
 
 RM = rm -rf
 
+CFLAGS = -Wall -Wextra -Werror -g
 all : ${NAME}
 
 ${NAME} : ${OBJ}
@@ -17,7 +18,7 @@ ${NAME} : ${OBJ}
 	@${CC} ${OBJ} ${LIB} -lmlx -lmlx -framework  OpenGL -framework AppKit -o ${NAME}
 
 %.o: %.c HEADER
-	@$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	@$(CC) $(CFLAGS) -Imlx -c $^ -o $@ 
 
 clean :
 	@${RM} ${OBJ} ${NAME}

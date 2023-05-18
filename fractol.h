@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/17 17:33:16 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/18 12:57:13 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ typedef struct s_fractal
     t_complex c;
     double move_x;
     double move_y;
-    double r_julia;
-    double i_julia;
+    // double r_julia;
+    // double i_julia;
     double min_x;
     double min_y;
     double max_x;

@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:11 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/18 10:23:06 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:53:38 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_sample get_color(int i)
 	}
     else
     {
-        color.r = (0xFF * i) / MAX_ITER;
+        color.r = 0xFF * i / MAX_ITER;
         color.g = (0xFF * i) / MAX_ITER;
         color.b = (0xFF * i) / MAX_ITER;
     }
@@ -47,9 +47,13 @@ void set_pixel_color(t_fractal *fractal, int x, int y, t_sample color)
 	color.r /= SAMPLE;
 	color.g /= SAMPLE;
 	color.b /= SAMPLE;
+	// printf("%d",color.r);
 	pixel_color = (color.r << 16) | color.g << 8 | color.b;
 	char *dst = fractal->addr + (y * fractal->line_length + x * (fractal->bpp / 8));
-	*(unsigned int*)dst = pixel_color;
+	// printf("p_colo:%d\n",*(unsigned int *)dst);
+	*(unsigned int *)dst = pixel_color;
+	// printf("%s\n", dst);
+
 }
 
 void set_fractal_type(t_fractal *fractal, char **argv)
@@ -92,10 +96,10 @@ void draw_fractal(t_fractal *fractal)
 	t_sample	color_pix;
 
 	y = -1;
-	while (++y < WIDTH)
+	while (++y < HEIGHT)
 	{
 		x = -1;
-		while (++x < HEIGHT)
+		while (++x < WIDTH)
 		{
 			i = 0;
 			color.r = 0;
@@ -103,22 +107,24 @@ void draw_fractal(t_fractal *fractal)
 			color.b = 0;
 			while (i++ < SAMPLE)
 			{
-				sample.r = (x + i % 2) / WIDTH;
-				sample.i = (y + i / 2) /HEIGHT;
+				sample.r = (x + i % 2) / (float)WIDTH;
+				sample.i = (y + i / 2) / (float)HEIGHT;
 				c.r = fractal->min_x + sample.r * (fractal->max_x - fractal->min_x);
 				c.i = fractal->min_y + sample.i * (fractal->max_y - fractal->min_y);
 
 				j = perform_iteration(c);
+				// printf("%d\n",j);mq
 				color_pix = get_color(j);
 
+				// printf("i---%d\n",i);
 				color.r += color_pix.r;
 				color.g += color_pix.g;
 				color.b += color_pix.b;
-
 				set_pixel_color(fractal,x,y,color);
 			}
 		}
 	}
+	if (fractal->mlx && fractal->win && fractal->img)
 		mlx_put_image_to_window(fractal->mlx, fractal->win, fractal->img, 0, 0);
 }
 
