@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/18 12:57:13 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/19 02:20:24 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
-#define MAX_ITER 1800
+#define MAX_ITER 0
 
 typedef struct s_complex
 {
@@ -64,5 +64,5 @@ typedef struct s_fractal
     double max_y;
     int    type;
 }       t_fractal;
-
+void    draw_fractal(t_fractal *fractal);
 #endif
