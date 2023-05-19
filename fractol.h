@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/19 02:20:24 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:32:34 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@
 #include<unistd.h>
 #include<math.h>
 #include<complex.h>
-#include"lib/libft.h"
+#include"lib/libft.h" 
 #include"define.h"
-
+                      
 #define HEIGHT 600
-#define WIDTH 800
+#define WIDTH 800    
 #define GUI_H 400
 #define GUI_W 200
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
-#define MAX_ITER 0
+#define MAX_ITER 150
 
-typedef struct s_complex
+typedef struct s_complex    
 {
     double r;
     double i;
-} t_complex;
+} t_complex; 
 
 typedef struct c_sample
 {

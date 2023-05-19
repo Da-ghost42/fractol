@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:11 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/19 02:46:06 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:35:02 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ t_sample get_color(int i)
 	}
     else
     {
-        color.r = (10 * i) % 0xFF;
-        color.g = (10 * i) % 0xFF;
-        color.b = (10 * i) % 0xFF;
+        color.r = i % 256;
+        color.g = i % 256;
+        color.b = i % 256;
     }
     return color;
 }
@@ -48,7 +48,7 @@ void set_pixel_color(t_fractal *fractal, int x, int y, t_sample color)
 	color.g = color.g * 255 / SAMPLE;
 	color.b = color.b * 255 / SAMPLE;
 	pixel_color = (color.r << 16) | (color.g << 8) | color.b;
-	// printf("%d\n",pixel_color);
+	// printf("%x\n",pixel_color);
 	char *dst = fractal->addr + (y * fractal->line_length + x * (fractal->bpp / 8));
 	*(unsigned int *)dst = pixel_color;
 
@@ -93,6 +93,10 @@ void draw_fractal(t_fractal *fractal)
 	t_sample	color;
 	t_sample	color_pix;
 
+	fractal->max_x = 2;
+	fractal->min_x = -2;
+	fractal->min_y = -2;
+	fractal->max_y = 2;
 	y = -1;
 	while (++y < HEIGHT)
 	{
@@ -109,14 +113,12 @@ void draw_fractal(t_fractal *fractal)
 				sample.i = (y + i / SAMPLE) / (float)HEIGHT;
 				c.r = fractal->min_x + sample.r * (fractal->max_x - fractal->min_x);
 				c.i = fractal->min_y + sample.i * (fractal->max_y - fractal->min_y);
-
 				j = perform_iteration(c);
 				color_pix = get_color(j);
 
 				color.r += color_pix.r;
 				color.g += color_pix.g;
 				color.b += color_pix.b;
-				// printf("%d\n",(int)color_pix.g);
 				set_pixel_color(fractal,x,y,color);
 			}
 		}
