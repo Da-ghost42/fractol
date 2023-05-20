@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "ios": "c"
+        "ios": "c",
+        "fractol.h": "c"
     }
 }

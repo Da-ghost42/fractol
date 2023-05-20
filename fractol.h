@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/19 18:32:34 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/20 12:00:30 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
-#define MAX_ITER 150
+#define MAX_ITER 100
 
 typedef struct s_complex    
 {
