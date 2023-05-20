@@ -45,22 +45,7 @@ void	init_mandel(t_fractal *fractal)
 		fractal->max_y = 2;
 		draw_fractal(fractal);
 }
-// int	mandel_iteration(t_complex c)
-// {
-// 	int			i;
-// 	t_complex	tmp;
-// 	t_complex	z = {0,0};
 
-// 	i = 0;
-// 	while (z.r * z.r + z.i * z.i < 4 && i < MAX_ITER)
-// 	{
-// 		z.r = z.r * z.r - z.i * z.i + c.r;
-// 		z.i = 2 * z.r * z.i + c.i;
-// 		tmp = z;
-// 		i++;
-// 	}
-// 	return i;
-// }
 int mandel_iteration(t_complex c)
 {
 	int i;
@@ -79,6 +64,7 @@ int mandel_iteration(t_complex c)
 	}
 	return i;
 }
+
 void	draw_fractal(t_fractal *fractal)
 {
 	int	x;
@@ -92,8 +78,6 @@ void	draw_fractal(t_fractal *fractal)
 		x = -1;
 		while (++x < WIDTH)
 		{
-			// c.r = (x - WIDTH / 2) * fractal->zoom / WIDTH + fractal->move_x; 
-			// c.i = (x - HEIGHT / 2) * fractal->zoom / HEIGHT + fractal->move_y;
 			c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
 			c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
 			i = mandel_iteration(c);
@@ -106,6 +90,10 @@ void	draw_fractal(t_fractal *fractal)
 		mlx_put_image_to_window(fractal->mlx,fractal->win,fractal->img,0,0);
 }
 
+void	hooks(t_fractal *fractal)
+{
+	mlx_hook(fractal->win,2,0,keypress_set,fractal->mlx);
+}
 void	init_fractol(t_fractal *fractal,int set)
 {
 	if (set == MANDELBROT)
@@ -119,6 +107,7 @@ void	init_fractol(t_fractal *fractal,int set)
 	{
 		ft_putstr_fd("after mandel",2);
 	}
+	hooks(fractal);
 	mlx_loop(fractal->mlx);
 }
 
@@ -135,10 +124,6 @@ int	check_args(char *av)
 	}
 }
 
-void	hooks(t_fractal *fractal)
-{
-	mlx_hook(fractal->win,2,0,keypress_set,fractal->mlx);
-}
 
 int main (int ac ,char **av)
 {
@@ -152,6 +137,5 @@ int main (int ac ,char **av)
 		exit(EXIT_FAILURE);
 	}
 	init_fractol(fractal,check_args(av[1]));
-	hooks(fractal);
 	// mlx_loop(fractal->mlx);
 }
