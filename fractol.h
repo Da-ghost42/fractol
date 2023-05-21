@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/21 15:11:01 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/21 21:31:15 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include<complex.h>
 #include"lib/libft.h" 
 #include"define.h"
-                      
+					  
 #define HEIGHT 600
 #define WIDTH 600
 #define GUI_H 400
@@ -33,40 +33,48 @@
 
 typedef struct s_complex    
 {
-    double r;
-    double i;
+	double r;
+	double i;
 } t_complex; 
 
 typedef struct c_sample
 {
-    unsigned char r;
-    unsigned char g;
-    unsigned char b;
+	unsigned char r;
+	unsigned char g;
+	unsigned char b;
 } t_sample;
 
 typedef struct s_fractal
 {
-    void *mlx;
-    void *win;
-    void *img;
-    void *gui;
-    int i;
-    int j;
-    char *addr;
-    int bpp;
-    int line_length;
-    int endian;
-    double zoom;
-    t_complex c;
-    t_complex  ju;
-    double move_x;
-    double move_y;
-    double min_x;
-    double min_y;
-    double max_x;
-    double max_y;
-    int     iter;
-    int    type;
+	void *mlx;
+	void *win;
+	void *img;
+	void *gui;
+	char *addr;
+	int bpp;
+	int line_length;
+	int endian;
+	double zoom;
+	t_complex c;
+	t_complex  ju;
+	double min_x;
+	double min_y;
+	double max_x;
+	double max_y;
+	int    iter;
+	int    type;
 }       t_fractal;
 void    draw_fractal(t_fractal *fractal);
+int	key_set(int o ,t_fractal *fractal);
+int	keypress_set(t_fractal *fractal);
+int	mouse_set(int keycode,int x,int y,t_fractal *fractal);
+int zoom_out(int x, int y, t_fractal *fractal);
+int zoom_in(int x, int y, t_fractal *fractal);
+void	set_pix_color(t_fractal *fractal,int x,int y,int color);
+int zoom_out(int x, int y, t_fractal *fractal);
+int zoom_in(int x, int y, t_fractal *fractal);
+void	init_mandel(t_fractal *fractal);
+int iteration(t_complex c, t_fractal *fractal);
+void	draw_fractal(t_fractal *fractal);
+int	get_color(int i);
 #endif

@@ -1,63 +1,62 @@
 #include"fractol.h"
 
-// void get_guide(t_fractal *fractal)
-// {
-// 	void *gui_win;
+void	set_pix_color(t_fractal *fractal,int x,int y,int color)
+{
+	char	*dst;
 
-// 	gui_win = mlx_new_window(fractal->mlx, GUI_W, GUI_H, "GUIDE");
+	dst = fractal->addr + (y * fractal->line_length + x * (fractal->bpp / 8));
+	*(unsigned int*)dst = color;
+}
 
-// 	mlx_string_put(fractal->mlx, gui_win, 10, 10, "Fractol GUIDE", 0xFFFFFF);
-// 	mlx_string_put(fractal->mlx, gui_win, 10, 30, "Press ESC to quit", 0xFFFFFF);
-// 	mlx_string_put(fractal->mlx, gui_win, 10, 50, "Press G for help", 0xFFFFFF);
-// }
+int zoom_out(int x, int y, t_fractal *fractal)
+{
+	double j;
+	double i;
 
-// int zoom_in(int keycode,int x,int y,t_fractal *fractal)
-// {
-// 	// double zoom_v = 1.1;
-// 	// double x_off = (double)(x - (WIDTH / 2)) / (double)(WIDTH / 2) * fractal->zoom;
-// 	// double y_off = (double)(y - (HEIGHT / 2)) / (double)(HEIGHT / 2) * fractal->zoom;
-	
-// 	// 	fractal->zoom *= zoom_v;
-// 	// 	fractal->min_x += x_off/ fractal->zoom;
-// 	// 	fractal->min_y += y_off / fractal->zoom;
-// 	// 	draw_fractal(fractal);
-	
-// 	 if (keycode == 4)
-// 	{
-// 	    double zoom_factor = 1.2;
-// 	    fractal->zoom *= zoom_factor;
-// 	    fractal->move_x += (x - WIDTH / 2) * (1.0 / WIDTH) / fractal->zoom * zoom_factor;
-// 	    fractal->move_y += (y - HEIGHT / 2) * (1.0 / HEIGHT) / fractal->zoom * zoom_factor;
-// 	}
-// 	else if (keycode == -1)
-// 	{
-// 	    double zoom_factor = 1.2;
-// 	    fractal->zoom /= zoom_factor;
-// 	    fractal->move_x -= (x - WIDTH / 2) * (1.0 / WIDTH) / fractal->zoom / zoom_factor;
-// 	    fractal->move_y -= (y - HEIGHT / 2) * (1.0 / HEIGHT) / fractal->zoom / zoom_factor;
-// 	}
-// 	// draw_fractal(fractal);
-// 	// return (0);
-// }
+	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
+	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+	fractal->min_x /= fractal->zoom;
+	fractal->max_x /= fractal->zoom;
+	fractal->min_y /= fractal->zoom;
+	fractal->max_y /= fractal->zoom;
+	fractal->min_x -= i;
+	fractal->max_x -= i;
+	fractal->min_y -= j;
+	fractal->max_y -= j;
+	fractal->iter -= 10;
 
-// int handle_mousepress(int keycode,int x,int y,t_fractal *fractal)
-// {
-// 	if (keycode == MOUSE_UP)
-// 		zoom_in(keycode,x,y,fractal);
-// }
+    draw_fractal(fractal);
+    return 0;
+}
 
-// int julia_iterations(double x, double y, double cx, double cy) {
-//     double zx = x;
-//     double zy = y;
-//     double new_zx, new_zy;
+int zoom_in(int x, int y, t_fractal *fractal)
+{
+	double j;
+	double i;
 
-//     int i = 0;
-//     while (i < MAX_ITER && (zx * zx + zy * zy) < 4.0) {
-//         new_zx = zx * zx - zy * zy + cx;
-//         new_zy = 2.0 * zx * zy + cy;
-//         zx = new_zx;
-//         zy = new_zy;
-//         i++;
-//     }
-//     return i;
-// }
+	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
+	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+	fractal->min_x += i;
+	fractal->max_x += i;
+	fractal->min_y += j;
+	fractal->max_y += j;
+	fractal->min_x *= fractal->zoom;
+	fractal->max_x *= fractal->zoom;
+	fractal->min_y *= fractal->zoom;
+	fractal->max_y *= fractal->zoom;
+	fractal->iter += 10;
+    draw_fractal(fractal);
+    return 0;
+}
+int	get_color(int i)
+{
+	 int	r;
+	 int	g;
+	 int	b;
+
+	 r = i % 256;
+	 g = (i * 2) % 256;
+	 b = (i * 3) % 256;
+
+	 return ((r << 16) | (g << 8) | b);
+}
