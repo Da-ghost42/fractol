@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/20 13:05:02 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/21 03:00:06 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define FRACTOL_H
 #include<mlx.h>
 #include<stdio.h>
+// # include <X11/keysym.h>
+// #include<X11/X.h>
 #include<unistd.h>
 #include<math.h>
 #include<complex.h>
@@ -21,13 +23,13 @@
 #include"define.h"
                       
 #define HEIGHT 600
-#define WIDTH 800    
+#define WIDTH 800 
 #define GUI_H 400
 #define GUI_W 200
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
-#define MAX_ITER 300
+#define MAX_ITER 150
 
 typedef struct s_complex    
 {
@@ -48,6 +50,8 @@ typedef struct s_fractal
     void *win;
     void *img;
     void *gui;
+    int i;
+    int j;
     char *addr;
     int bpp;
     int line_length;
