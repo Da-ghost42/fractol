@@ -12,30 +12,12 @@
 
 #include"fractol.h"
 
-
-void	init_julia(t_fractal *fractal)
+void	draw_fractal(t_fractal *fractal)
 {
-		fractal->mlx = mlx_init();
-		fractal->win = mlx_new_window(fractal->mlx,WIDTH,HEIGHT,"FRACT-OL");
-		fractal->img = mlx_new_image(fractal->mlx,WIDTH,HEIGHT);
-		fractal->addr = mlx_get_data_addr(fractal->img,&fractal->bpp,&fractal->line_length,&fractal->endian);
-		fractal->zoom = 0.5;
-		fractal->ju.r = -0.8;
-		fractal->ju.i = 0.156;
-		fractal->min_x = -2;
-		fractal->max_x = 2;
-		fractal->min_y = -2.0;
-		fractal->max_y = 2.0;
-		fractal->type = JULIA;
-		draw_fractal(fractal);
-}
-
-void	hooks(t_fractal *fractal)
-{
-	mlx_hook(fractal->win,17,0,keypress_set,fractal);
-	mlx_hook(fractal->win,2,1L,key_set,fractal);
-	mlx_hook(fractal->win, 5, 0, mouse_set, fractal);
-	mlx_hook(fractal->win, 4, 0,mouse_set, fractal);
+	if (fractal->type == MANDELBROT)
+		draw_mandel(fractal);
+	if (fractal->type == JULIA)
+		draw_julia(fractal);
 }
 
 void	init_fractol(t_fractal *fractal,int set)

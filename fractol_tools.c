@@ -13,8 +13,8 @@ int zoom_out(int x, int y, t_fractal *fractal)
 	double j;
 	double i;
 
-	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
-	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
 	fractal->min_x /= fractal->zoom;
 	fractal->max_x /= fractal->zoom;
 	fractal->min_y /= fractal->zoom;
@@ -34,8 +34,8 @@ int zoom_in(int x, int y, t_fractal *fractal)
 	double j;
 	double i;
 
-	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
-	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+	i = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+	j = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
 	fractal->min_x += i;
 	fractal->max_x += i;
 	fractal->min_y += j;

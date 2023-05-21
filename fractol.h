@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/21 21:31:15 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:24:32 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@
 #include"lib/libft.h" 
 #include"define.h"
 					  
-#define HEIGHT 600
-#define WIDTH 600
+#define SIZE 600
 #define GUI_H 400
 #define GUI_W 200
 #define MANDELBROT 1
@@ -64,6 +63,7 @@ typedef struct s_fractal
 	int    iter;
 	int    type;
 }       t_fractal;
+void	init_fractol(t_fractal *fractal,int set);
 void    draw_fractal(t_fractal *fractal);
 int	key_set(int o ,t_fractal *fractal);
 int	keypress_set(t_fractal *fractal);
@@ -77,4 +77,9 @@ void	init_mandel(t_fractal *fractal);
 int iteration(t_complex c, t_fractal *fractal);
 void	draw_fractal(t_fractal *fractal);
 int	get_color(int i);
+void	init_julia(t_fractal *fractal);
+void    draw_julia(t_fractal *fractal);
+void	hooks(t_fractal *fractal);
+void	draw_mandel(t_fractal *fractal);
+
 #endif

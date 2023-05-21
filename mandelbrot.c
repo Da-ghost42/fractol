@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:24:17 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/21 21:25:41 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 00:22:13 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 void	init_mandel(t_fractal *fractal)
 {
 		fractal->mlx = mlx_init();
-		fractal->win = mlx_new_window(fractal->mlx,WIDTH,HEIGHT,"FRACT-OL");
-		fractal->img = mlx_new_image(fractal->mlx,WIDTH,HEIGHT);
+		fractal->win = mlx_new_window(fractal->mlx,SIZE,SIZE,"FRACT-OL");
+		fractal->img = mlx_new_image(fractal->mlx,SIZE,SIZE);
 		fractal->addr = mlx_get_data_addr(fractal->img,&fractal->bpp,&fractal->line_length,&fractal->endian);
 		fractal->zoom = 0.5;
 		fractal->min_x = -2;
@@ -47,7 +47,7 @@ int iteration(t_complex c, t_fractal *fractal)
 	return i;
 }
 
-void	draw_fractal(t_fractal *fractal)
+void	draw_mandel(t_fractal *fractal)
 {
 	int	x;
 	int	y;
@@ -56,21 +56,21 @@ void	draw_fractal(t_fractal *fractal)
 	// t_complex	z;
 
 	y = -1;
-	while (++y < HEIGHT)
+	while (++y < SIZE)
 	{
 		x = -1;
-		while (++x < HEIGHT)
+		while (++x < SIZE)
 		{
 			if (fractal->type == MANDELBROT)
 			{
-				c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
-				c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+				c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+				c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
 				i = iteration(c,fractal);
 			}
 			else if (fractal->type == JULIA)
 			{
-				fractal->c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / WIDTH;
-				fractal->c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / HEIGHT;
+				fractal->c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+				fractal->c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
 				i = iteration(c,fractal);
 			}
 			if (i == fractal->iter)
