@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/21 03:00:06 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/21 15:11:01 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include"define.h"
                       
 #define HEIGHT 600
-#define WIDTH 800 
+#define WIDTH 600
 #define GUI_H 400
 #define GUI_W 200
 #define MANDELBROT 1
@@ -58,14 +58,14 @@ typedef struct s_fractal
     int endian;
     double zoom;
     t_complex c;
+    t_complex  ju;
     double move_x;
     double move_y;
-    // double r_julia;
-    // double i_julia;
     double min_x;
     double min_y;
     double max_x;
     double max_y;
+    int     iter;
     int    type;
 }       t_fractal;
 void    draw_fractal(t_fractal *fractal);
