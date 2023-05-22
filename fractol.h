@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 00:24:32 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:46:26 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	init_julia(t_fractal *fractal);
 void    draw_julia(t_fractal *fractal);
 void	hooks(t_fractal *fractal);
 void	draw_mandel(t_fractal *fractal);
+t_complex	which_julia(t_fractal *fractal);
 
 #endif

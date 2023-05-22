@@ -16,7 +16,7 @@ void	draw_fractal(t_fractal *fractal)
 {
 	if (fractal->type == MANDELBROT)
 		draw_mandel(fractal);
-	if (fractal->type == JULIA)
+	if (fractal->type == JULIA || fractal->type == JULIA_1 || fractal->type == JULIA_2)
 		draw_julia(fractal);
 }
 
@@ -34,10 +34,51 @@ void	init_fractol(t_fractal *fractal,int set)
 		fractal = (t_fractal *)malloc(sizeof(t_fractal));
 		if (!fractal)
 			exit (EXIT_FAILURE);
+		fractal->type = JULIA;
+		init_julia(fractal);
+	}
+	if (set == JULIA_1)
+	{
+		fractal = (t_fractal *)malloc(sizeof(t_fractal));
+		if (!fractal)
+			exit (EXIT_FAILURE);
+		fractal->type = JULIA_1;
+		init_julia(fractal);
+	}
+	if (set == JULIA_2)
+	{
+		fractal = (t_fractal *)malloc(sizeof(t_fractal));
+		if (!fractal)
+			exit (EXIT_FAILURE);
+		fractal->type = JULIA_2;
 		init_julia(fractal);
 	}
 	hooks(fractal);
 	mlx_loop(fractal->mlx);
+}
+
+t_complex	which_julia(t_fractal *fractal)
+{
+	t_complex c;
+
+	c.r = 0;
+	c.i = 0;
+	if (fractal->type == JULIA)
+	{
+		c.r = 0;
+		c.i = -0.8;
+	}
+	else if (fractal->type == JULIA_1)
+	{
+		c.r = -0.8;
+		c.i = -0.156;
+	}
+	else if (fractal->type == JULIA_2)
+	{
+		c.r = -0.835;
+		c.i = -0.2321;
+	}
+	return (c);
 }
 
 int	check_args(char *av)
@@ -45,7 +86,12 @@ int	check_args(char *av)
 	if (ft_strncmp(av,"Mandelbrot",ft_strlen(av)) == 0)
 		return(MANDELBROT);
 	if (ft_strncmp(av,"Julia",ft_strlen(av)) == 0)
+
 		return (JULIA);
+	if (ft_strncmp(av,"Julia1",ft_strlen(av)) == 0)
+		return (JULIA_1);
+	if (ft_strncmp(av,"Julia2",ft_strlen(av)) == 0)
+		return (JULIA_2);
 	else
 	{
 		ft_putstr_fd("Invalid arguments\n",2);

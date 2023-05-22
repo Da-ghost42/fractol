@@ -7,6 +7,8 @@
 #define MANDELBROT 1
 #define KEY_ESC 53
 #define JULIA 2
+#define JULIA_1 3
+#define JULIA_2 4
 #define ZF 1.1
 #define QUIT 17
 
