@@ -11,5 +11,6 @@
 #define JULIA_2 4
 #define ZF 1.1
 #define QUIT 17
+#define MOUSE_MOVE 6
 
 #endif
