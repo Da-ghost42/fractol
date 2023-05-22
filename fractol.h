@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 17:41:04 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:22:49 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,8 @@ void	hooks(t_fractal *fractal);
 void	draw_mandel(t_fractal *fractal);
 t_complex	which_julia(t_fractal *fractal);
 int animate(int x,int y,t_fractal *fractal);
+void	draw_burn(t_fractal *fractal);
+int iteration_burn(t_complex c, t_fractal *fractal);
+void	init_burn(t_fractal *fractal);
 
 #endif

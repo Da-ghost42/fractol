@@ -5,6 +5,7 @@
 #define MOUSE_DW 5
 #define GUIDE 6
 #define MANDELBROT 1
+#define BURN 5
 #define KEY_ESC 53
 #define JULIA 2
 #define JULIA_1 3

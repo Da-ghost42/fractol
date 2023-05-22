@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   burnningship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 21:24:17 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 20:16:13 by mboutuil         ###   ########.fr       */
+/*   Created: 2023/05/22 20:14:08 by mboutuil          #+#    #+#             */
+/*   Updated: 2023/05/22 20:26:41 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
-#include<math.h>
 
-void	init_mandel(t_fractal *fractal)
+void	init_burn(t_fractal *fractal)
 {
 		fractal->mlx = mlx_init();
 		fractal->win = mlx_new_window(fractal->mlx,SIZE,SIZE,"FRACT-OL");
@@ -25,11 +24,11 @@ void	init_mandel(t_fractal *fractal)
 		fractal->min_y = -2.0;
 		fractal->max_y = 2.0;
 		fractal->iter = 150;
-		fractal->type = MANDELBROT;
+		fractal->type = BURN;
 		draw_fractal(fractal);
 }
 
-int iteration(t_complex c, t_fractal *fractal)
+int iteration_burn(t_complex c, t_fractal *fractal)
 {
 	int i;
 	t_complex tmp;
@@ -41,20 +40,19 @@ int iteration(t_complex c, t_fractal *fractal)
 	while (z.r * z.r + z.i * z.i < 4 && i < fractal->iter)
 	{
 		tmp.r = z.r * z.r - z.i * z.i + c.r;
-		tmp.i = 2 * z.r * z.i + c.i;
+		tmp.i = fabs(2 * z.r * z.i) + c.i;
 		z = tmp;
 		i++;
 	}
 	return i;
 }
 
-void	draw_mandel(t_fractal *fractal)
+void	draw_burn(t_fractal *fractal)
 {
 	int	x;
 	int	y;
 	int	i;
 	t_complex	c;
-	// t_complex	z;
 
 	y = -1;
 	while (++y < SIZE)
@@ -62,12 +60,9 @@ void	draw_mandel(t_fractal *fractal)
 		x = -1;
 		while (++x < SIZE)
 		{
-			if (fractal->type == MANDELBROT)
-			{
-				c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
-				c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
-				i = iteration(c,fractal);
-			}
+			c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+			c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
+			i = iteration_burn(c,fractal);
 			if (i == fractal->iter)
 				set_pix_color(fractal,x,y,0x000000);
 			else

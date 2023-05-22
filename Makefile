@@ -1,6 +1,6 @@
 NAME = fractol
 
-SRC = fractol.c fractol_tools.c mandelbrot.c hooks.c julia.c
+SRC = fractol.c fractol_tools.c mandelbrot.c hooks.c julia.c burnningship.c
 
 LIB = lib/libft.a
 
@@ -8,7 +8,7 @@ HEADER = fractol.h
 
 HEAD = define.h
 
-OBJ = fractol.o fractol_tools.o mandelbrot.o hooks.o julia.o
+OBJ = fractol.o fractol_tools.o mandelbrot.o hooks.o julia.o burnningship.o
 
 RM = rm -rf
 
