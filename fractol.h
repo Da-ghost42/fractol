@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 17:00:52 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:41:04 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,33 +36,28 @@ typedef struct s_complex
 	double i;
 } t_complex; 
 
-typedef struct c_sample
-{
-	unsigned char r;
-	unsigned char g;
-	unsigned char b;
-} t_sample;
-
 typedef struct s_fractal
 {
-	void *mlx;
-	void *win;
-	void *img;
-	void *gui;
-	char *addr;
-	int bpp;
-	int line_length;
-	int endian;
-	double zoom;
-	t_complex c;
-	t_complex  ju;
-	double min_x;
-	double min_y;
-	double max_x;
-	double max_y;
-	int    iter;
-	int    type;
+	void		*mlx;
+	void		*win;
+	void		*img;
+	void		*gui;
+	char		*addr;
+	int			bpp;
+	int			line_length;
+	int			endian;
+	double		zoom;
+	t_complex	c;
+	t_complex	ju;
+	double		min_x;
+	double		min_y;
+	double		max_x;
+	double		max_y;
+	int			iter;
+	int			type;
+	int			lock;
 }       t_fractal;
+//FUNCTIONS
 void	init_fractol(t_fractal *fractal,int set);
 void    draw_fractal(t_fractal *fractal);
 int	key_set(int o ,t_fractal *fractal);

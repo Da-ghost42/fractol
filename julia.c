@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:42:50 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 12:50:03 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:41:12 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	init_julia(t_fractal *fractal)
 		fractal->c.r = -1;
 		fractal->c.i = 0;
 		fractal->iter = 150;
+		fractal->lock = -1;
 		fractal->ju = which_julia(fractal);
 		draw_julia(fractal);
 }
