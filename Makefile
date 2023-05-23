@@ -12,7 +12,8 @@ OBJ = fractol.o fractol_tools.o mandelbrot.o hooks.o julia.o burnningship.o
 
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
+
 all : ${NAME}
 
 ${NAME} : ${OBJ} 

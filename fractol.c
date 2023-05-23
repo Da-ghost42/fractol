@@ -6,11 +6,21 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:11 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/23 15:54:10 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/23 17:47:53 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"fractol.h"
+
+void	args_help()
+{
+	ft_putstr_fd("available arguments\n",2);
+	ft_putstr_fd("------->Mandelbrot\n",2);
+	ft_putstr_fd("------->Julia\n",2);
+	ft_putstr_fd("---->Julia1\n",2);
+	ft_putstr_fd("---->Julia2\n",2);
+	ft_putstr_fd("------->Burningship\n",2);
+}
 
 void	draw_fractal(t_fractal *fractal)
 {
@@ -77,19 +87,20 @@ t_complex	which_julia(t_fractal *fractal)
 
 int	check_args(char *av)
 {
-	if (ft_strncmp(av, "Mandelbrot", ft_strlen(av)) == 0)
+	if (ft_strncmp(av, "Mandelbrot", ft_strlen("Mandelbrot")) == 0)
 		return (MANDELBROT);
-	if (ft_strncmp(av, "Julia", ft_strlen(av)) == 0)
+	if (ft_strncmp(av, "Julia", ft_strlen("Julia")) == 0)
 		return (JULIA);
-	if (ft_strncmp(av, "Julia1", ft_strlen(av)) == 0)
+	if (ft_strncmp(av, "Julia1", ft_strlen("Julia1")) == 0)
 		return (JULIA_1);
-	if (ft_strncmp(av, "Julia2", ft_strlen(av)) == 0)
+	if (ft_strncmp(av, "Julia2", ft_strlen("Julia2")) == 0)
 		return (JULIA_2);
-	if (ft_strncmp(av, "burningship", ft_strlen(av)) == 0)
+	if (ft_strncmp(av, "Burningship", ft_strlen("Burningship")) == 0)
 		return (BURN);
 	else
 	{
-		ft_putstr_fd ("Invalid arguments\n", 2);
+		ft_putstr_fd ("-------Invalid arguments-------\n", 2);
+		args_help();
 		exit (EXIT_FAILURE);
 	}
 }
@@ -102,6 +113,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		ft_putstr_fd ("invalid arguments\n", 2);
+		args_help();
 		exit (EXIT_FAILURE);
 	}
 	init_fractol (fractal, check_args(av[1]));
