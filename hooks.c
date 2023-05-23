@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:26:00 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/23 04:26:52 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/23 05:21:54 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	key_set(int keycode ,t_fractal *fractal)
 	}
 	if (keycode == 49)
 		fractal->lock *= -1;
-	if (keycode == ARR_L || keycode == ARR_R || keycode == ARR_D || keycode == ARR_D)
+	if (keycode == ARR_L || keycode == ARR_R || keycode == ARR_D || keycode == ARR_U)
 		arrows(keycode,fractal);
 	return (0);
 }
@@ -69,13 +69,25 @@ int	key_set(int keycode ,t_fractal *fractal)
 int	arrows(int keycode, t_fractal *fractal)
 {
 	if (keycode == ARR_L)
+	{
 		fractal->min_x += 0.1;
+		fractal->max_x += 0.1;
+	}
 	else if (keycode == ARR_R)
+	{
 		fractal->min_x -= 0.1;
+		fractal->max_x -= 0.1;
+	}
 	else if (keycode == ARR_U)
+	{
 		fractal->min_y += 0.1;
+		fractal->max_y += 0.1;
+	}
 	else if (keycode == ARR_D)
+	{
 		fractal->min_y -= 0.1;
+		fractal->max_y -= 0.1;
+	}
 	mlx_clear_window(fractal->mlx,fractal->win);
 	draw_fractal(fractal);
 	return (0);
