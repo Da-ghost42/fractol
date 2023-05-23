@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 02:18:18 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 20:22:49 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/23 03:51:38 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #define FRACTOL_H
 #include<mlx.h>
 #include<stdio.h>
-// # include <X11/keysym.h>
-// #include<X11/X.h>
 #include<unistd.h>
 #include<math.h>
 #include<complex.h>
@@ -47,8 +45,10 @@ typedef struct s_fractal
 	int			line_length;
 	int			endian;
 	double		zoom;
-	t_complex	c;
+	int			x;
+	int			y;
 	t_complex	ju;
+	t_complex	c;
 	double		min_x;
 	double		min_y;
 	double		max_x;
@@ -60,7 +60,7 @@ typedef struct s_fractal
 //FUNCTIONS
 void	init_fractol(t_fractal *fractal,int set);
 void    draw_fractal(t_fractal *fractal);
-int	key_set(int o ,t_fractal *fractal);
+int	key_set(int keycode ,t_fractal *fractal);
 int	keypress_set(t_fractal *fractal);
 int	mouse_set(int keycode,int x,int y,t_fractal *fractal);
 int zoom_out(int x, int y, t_fractal *fractal);
@@ -74,6 +74,7 @@ void	draw_fractal(t_fractal *fractal);
 int	get_color(int i);
 void	init_julia(t_fractal *fractal);
 void    draw_julia(t_fractal *fractal);
+int	arrows(int keycode, t_fractal *fractal);
 void	hooks(t_fractal *fractal);
 void	draw_mandel(t_fractal *fractal);
 t_complex	which_julia(t_fractal *fractal);

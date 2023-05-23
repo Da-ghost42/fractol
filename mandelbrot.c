@@ -6,7 +6,7 @@
 /*   By: mboutuil <mboutuil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:24:17 by mboutuil          #+#    #+#             */
-/*   Updated: 2023/05/22 20:16:13 by mboutuil         ###   ########.fr       */
+/*   Updated: 2023/05/23 04:22:21 by mboutuil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int iteration(t_complex c, t_fractal *fractal)
 
 void	draw_mandel(t_fractal *fractal)
 {
+	int	i;
 	int	x;
 	int	y;
-	int	i;
 	t_complex	c;
 	// t_complex	z;
 
@@ -62,12 +62,9 @@ void	draw_mandel(t_fractal *fractal)
 		x = -1;
 		while (++x < SIZE)
 		{
-			if (fractal->type == MANDELBROT)
-			{
-				c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
-				c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
-				i = iteration(c,fractal);
-			}
+			c.r = fractal->min_x + x * (fractal->max_x - fractal->min_x) / SIZE;
+			c.i = fractal->min_y + y * (fractal->max_y - fractal->min_y) / SIZE;
+			i = iteration(c,fractal);
 			if (i == fractal->iter)
 				set_pix_color(fractal,x,y,0x000000);
 			else

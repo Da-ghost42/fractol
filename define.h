@@ -13,5 +13,9 @@
 #define ZF 1.1
 #define QUIT 17
 #define MOUSE_MOVE 6
+#define ARR_U 126
+#define ARR_D 125
+#define ARR_L 123
+#define ARR_R 124
 
 #endif
